@@ -52,19 +52,12 @@ void create_histogram(double *values, int *counts) {
     }
 }
 
-void print_histogram(int *counts) {
-    int max_count = 0;
-    for (int i = 0; i < BINS; ++i) {
-        if (counts[i] > max_count) {
-        max_count = counts[i];
-        }                
-    }
-    int scale = max_count / SCALE;
+void print_histogram(int * counts) {
     double bin_size = HISTOGRAM_SPAN / (double)BINS;
     for (int i = 0; i < BINS; ++i) {
-        double bin_start = -(HISTOGRAM_SPAN / 2.0) + i * bin_size;
+        double bin_start = -(HISTOGRAM_SPAN / 2.0) + (i + 0.5) * bin_size;
         printf("%.4f  ", bin_start);
-        for (int j = 0; j < counts[i] / scale; ++j) {
+        for (int j = 0; j < counts[i] / SCALE; ++j) {
             printf("X");
         }                                                                           
         printf("\n");
